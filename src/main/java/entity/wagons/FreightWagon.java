@@ -2,6 +2,7 @@ package entity.wagons;
 
 import entity.Cargo;
 
+import java.util.function.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,12 +21,8 @@ public class FreightWagon extends Wagon {
     }
 
     public int workloadValue() {
-        int workLoad = 0;
-        if (!cargoOnBoard.isEmpty()) {
-            for (Cargo cargo : cargoOnBoard) {
-                workLoad += cargo.getWeight();
-            }
-        }
+
+        int workLoad = cargoOnBoard.stream().map(p -> p.getWeight()).reduce((a1, a2) -> a1 + a2).orElse(0);
         return workLoad;
     }
 

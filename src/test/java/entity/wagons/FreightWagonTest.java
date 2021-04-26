@@ -26,7 +26,7 @@ class FreightWagonTest {
 
     @Test
     void workloadValue() {
-        cargoSet.add(cargo);
+        Set<Cargo> cargoSet = Set.of(CargoTestSample.getValidCargo(), CargoTestSample.getValidCargo(), CargoTestSample.getValidCargo());
         wagon.loadCargo(cargoSet);
         assertTrue(wagon.workloadValue() <= wagon.maxCarrying());
     }
